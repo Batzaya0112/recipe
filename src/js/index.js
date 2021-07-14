@@ -1,6 +1,5 @@
-const arr = [23, 44, 12];
-let myfunc = a =>{
-    console.log(`too: ${a}`);
-}
-const arr2 = [...arr, 44, 1223];
-myfunc(arr2[1]);
+import query from "./Model/Search";
+import { add, multiply as m } from "./View/searchView";
+console.log("хайлт: " + query);
+console.log("add " + add(6, 2));
+console.log(m(6, 2));
