@@ -1,13 +1,10 @@
-import {elements} from "./View/base";
+import {elements} from "./base";
 // private function
-const renderRecipes = (recipe) =>{
+const renderRecipe = recipe =>{
     console.log(recipe.title);
-}
+};
 // public function
 export const getInput = () => elements.searchInput.value;
-export const renderRecipes = (recipes) =>{
-    recipes.array.forEach(element => {
-        //recipes.forEach(el => renderRecipes(el));
-        recipes.forEach(renderRecipes);
-    });
-}
+export const renderRecipes = recipes => {
+    recipes.forEach(el => renderRecipe(el));
+};
