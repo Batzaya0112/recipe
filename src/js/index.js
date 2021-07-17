@@ -19,11 +19,14 @@ const controlSearch = async () => {
         state.search = new Search(query);
 
         //3. Хайлт хийхэд зориулж дэлгэцийг UI бэлтгэнэ.
+        searchView.clearSearchQuery();
+        searchView.clearSearchResult();
 
         //4. Хайлтыг гүйцэтгэнэ.
         await state.search.doSearch();
         //5. Хайлтын үр дүнг дэлгэцэнд үзүүлнэ.
-        searchView.renderRecipes(state.search.result);
+        if(state.search.result === undefined) alert('Хайлт илэрцгүй...');
+        else searchView.renderRecipes(state.search.result);
     }
    
 
