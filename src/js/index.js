@@ -3,7 +3,7 @@ import Search from "./model/Search";
 import {elements, renderLoader, clearLoader} from "./View/base";
 import * as searchView from "./View/searchView";
 import Recipe from "./Model/Recipe";
-import {renderRecipe, clearRecipe} from './View/recipeView'
+import {renderRecipe, clearRecipe, highLightSelectedRecipe} from './View/recipeView'
  /**
   * web app төлөв
   * - Хайлтын query, үр дүн
@@ -56,13 +56,12 @@ elements.pageButtons.addEventListener("click", e => {
 */const controlRecipe = async () => {
     // 1. URL-аас ID-ийг салгана.
     const id = window.location.hash.replace('#', '');
-    console.log(id);
     // 2. Жорын моделыг үүсгэж өгнө.
     state.recipe = new Recipe(id);
     // 3. UI дэлгэцийг бэлтгэнэ.
     clearRecipe();
     renderLoader(elements.recieDiv);
-
+    highLightSelectedRecipe(id);
     // 4. Жороо татаж авчирна.
     await state.recipe.getRecipe();
     // 5. Жорыг гүйцэтгэх хугацаа болон орцыг тооцоолно.

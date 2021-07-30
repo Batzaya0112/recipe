@@ -3,7 +3,7 @@ import {elements} from "./base";
 const renderRecipe = recipe =>{
     const markup = ` 
         <li>
-            <a class="likes__link" href="#${recipe.recipe_id}">
+            <a class="results__link" href="#${recipe.recipe_id}">
                 <figure class="likes__fig">
                     <img src="${recipe.image_url}" alt="Test">
                 </figure>
@@ -17,7 +17,7 @@ const renderRecipe = recipe =>{
         elements.searchResultList.insertAdjacentHTML("beforeend", markup);
 
 };
-// public function
+
 export const clearSearchQuery = () => {
     elements.searchInput.value = '';
 };
