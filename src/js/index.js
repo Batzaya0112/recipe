@@ -2,10 +2,9 @@ require("@babel/polyfill");
 import Search from "./model/Search";
 import { elements, renderLoader, clearLoader } from "./View/base";
 import * as searchView from "./View/searchView";
-import Recipe from "./Model/Recipe";
-import Recipe from "./Model/List";
-import List from "./Model/List";
 import * as listView from "./View/listView";
+import Recipe from "./Model/Recipe";
+import List from "./Model/List";
 import { renderRecipe, clearRecipe, highLightSelectedRecipe } from './View/recipeView'
 
 /**
@@ -90,18 +89,16 @@ const controlList = () => {
     state.list = new List();
     //Өмнө харагдаж байгаа жорны бүх найрлагыг дэлгэцнээс цэвэрлэнэ
     listView.cleatItems();
-    //Уг модел рүү одоо харагдаж байгаа жорны бүх найрлагыг ав хийнэ.
-    state.recipe.ingedients.forEach(n => {
+    //Уг модел рүү одоо харагдаж байгаа жорны бүх найрлагыг авч хийнэ.
+    state.recipe.ingredients.forEach(n => {
         //Тухайн найрлагыг модел рүү хийнэ
         state.list.addItem(n);
         //Тухайн найрлагыг дэлгэцэнд гаргана
         listView.renderItem(n);
-    }
-    );
-
+    });
 };
 elements.recieDiv.addEventListener('click', e => {
-    if (e.target.matches(".recipe__btn, recipe__btn *")) {
+    if (e.target.matches(".recipe__btn, .recipe__btn *")) {
         controlList();
     }
 });
