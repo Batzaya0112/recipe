@@ -92,13 +92,16 @@ const controlList = () => {
     //Уг модел рүү одоо харагдаж байгаа жорны бүх найрлагыг авч хийнэ.
     state.recipe.ingredients.forEach(n => {
         //Тухайн найрлагыг модел рүү хийнэ
-        state.list.addItem(n);
+        const item = state.list.addItem(n);
         //Тухайн найрлагыг дэлгэцэнд гаргана
-        listView.renderItem(n);
+        listView.renderItem(item);
     });
 };
 elements.recieDiv.addEventListener('click', e => {
     if (e.target.matches(".recipe__btn, .recipe__btn *")) {
         controlList();
     }
+});
+elements.shoppingList.addEventListener('click', e => {
+
 });

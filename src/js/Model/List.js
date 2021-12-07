@@ -4,10 +4,11 @@ export default class List {
         this.items = [];
     }
     addItem(item) {
-        this.items.push({
+        let newItem = {
             id: uniqid(),
-            //item: item
-            item
-        });
+            item //item: item
+        };
+        this.items.push(newItem);
+        return newItem;
     }
 }
