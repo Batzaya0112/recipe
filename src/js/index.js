@@ -103,5 +103,10 @@ elements.recieDiv.addEventListener('click', e => {
     }
 });
 elements.shoppingList.addEventListener('click', e => {
-
+    //Клик хийсэн li  элементийн data-temid аттрибутыг шүүж гаргаж авах
+    const id = e.target.closest(".shopping__item").dataset.itemid;
+    //Олдсон ID-тэй орцыг моделоос устгана
+    state.list.deleteItem(id);
+    //Дэлгэцээс ийм ID-тэй орцыг олж бас устгана
+    listView.deleteItem(id);
 });
