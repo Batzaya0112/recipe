@@ -1,4 +1,4 @@
-import {elements} from "./base";
+import { elements } from "./base";
 const renderNairlaga = orts => `<li class="recipe__item">
                                     <svg class="recipe__icon">
                                         <use href="img/icons.svg#icon-check"></use>
@@ -10,14 +10,14 @@ const renderNairlaga = orts => `<li class="recipe__item">
 export const highLightSelectedRecipe = id => {
     const arr = Array.from(document.querySelectorAll(".results__link"));
     arr.forEach(el => el.classList.remove("results__link--active"));
-    const domObj = document.querySelector(`a[href*="${id}" ]`);
-    if(domObj) domObj.classList.add("results__link--active");
+    const domObj = document.querySelector(`.results__link[href*="${id}" ]`);
+    if (domObj) domObj.classList.add("results__link--active");
 }
 export const clearRecipe = () => {
     // Одоо дэлгэц дээр байгаа жорыг арилгана.
     elements.recieDiv.innerHTML = '';
 }
-export const renderRecipe = recipe => {
+export const renderRecipe = (recipe, isLiked) => {
     // Энэ жорыг дэлгэцэнд гаргаж үзүүлнэ.
     const html = `<figure class="recipe__fig">
                     <img src="${recipe.image_url}" alt="${recipe.title}" class="recipe__img">
@@ -56,7 +56,7 @@ export const renderRecipe = recipe => {
                     </div>
                     <button class="recipe__love">
                         <svg class="header__likes">
-                            <use href="img/icons.svg#icon-heart-outlined"></use>
+                            <use href="img/icons.svg#icon-heart${isLiked ? '' : '-outlined'}"></use>
                         </svg>
                     </button>
                 </div>
