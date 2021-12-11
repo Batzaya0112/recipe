@@ -5,6 +5,7 @@ import * as searchView from "./View/searchView";
 import * as listView from "./View/listView";
 import Recipe from "./Model/Recipe";
 import List from "./Model/List";
+import Likes from "./Model/Like";
 import { renderRecipe, clearRecipe, highLightSelectedRecipe } from './View/recipeView'
 
 /**
@@ -97,9 +98,32 @@ const controlList = () => {
         listView.renderItem(item);
     });
 };
+/**
+ * Лайк контроллер
+ */
+const controlLike = () => {
+    //1. Лайкын моделийг үүсгэнэ
+    if (!state.likes) state.likes = new Likes();
+    //2. Одоо харагдаж байгаа жорын ID-ийг олж авах
+    const currentRecipeId = state.recipe.id;
+    //3. Энэ жорыг лайкласан эсэхийг шалгах
+    if (state.likes.isLiked(currentRecipeId)) {
+        //Лайкласан бол лайкийг нь болиулна
+        state.likes.deleteLike(currentRecipeId);
+
+    } else {
+        //Лайклаагүй бол лайклана
+        state.likes.addLike(currentRecipeId, state.recipe.title, state.recipe.publisher, state.recipe.image_url)
+    }
+    console.log(state.likes);
+
+}
 elements.recieDiv.addEventListener('click', e => {
     if (e.target.matches(".recipe__btn, .recipe__btn *")) {
         controlList();
+    }
+    else if (e.target.matches(".recipe__love, .recipe__love *")) {
+        controlLike();
     }
 });
 elements.shoppingList.addEventListener('click', e => {
