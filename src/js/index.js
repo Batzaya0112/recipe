@@ -17,8 +17,7 @@ import { renderRecipe, clearRecipe, highLightSelectedRecipe } from './View/recip
  * - Захиалж байгаа жорын найрлаганууд
  */
 const state = {};
-//Лайк цэсийг хаах
-likesView.toggleLikeMenu(0);
+
 /*
 * Хайлтын контроллер = Model ==> Controller/index.js/ <== View
 */
@@ -63,7 +62,8 @@ elements.pageButtons.addEventListener("click", e => {
 */const controlRecipe = async () => {
     // 1. URL-аас ID-ийг салгана.
     const id = window.location.hash.replace('#', '');
-    if (!state.likes) state.likes = new Likes();
+
+
     //URL дээр ID байгаа эсэхийг шалгана
     if (id) {
         // 2. Жорын моделыг үүсгэж өгнө.
@@ -85,6 +85,14 @@ elements.pageButtons.addEventListener("click", e => {
 //window.addEventListener('hashchange', controlRecipe);
 //window.addEventListener('load', controlRecipe);
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+window.addEventListener('load', e => {
+    //Шинээр лайк моделийг апп дөнгөж ачаалагдахад үүсгэнэ.
+    if (!state.likes) state.likes = new Likes();
+    //Лайк цэсийг гаргах эсэхийг шийдэх
+    likesView.toggleLikeMenu(state.likes.getNumberOfLikes());
+    //лайкууд байвал тэдгээрийг цэсэнд нэмж харуулна.
+    state.likes.likes.forEach(like => likesView.renderLike(like));
+});
 /**
  * Найрлаганы контроллер
  */
